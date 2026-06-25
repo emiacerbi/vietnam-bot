@@ -17,11 +17,13 @@ function daysRemaining(): number {
   return Math.ceil(diff / (1000 * 60 * 60 * 24));
 }
 
+const SONG = "https://www.youtube.com/watch?v=3RmQTYLD398";
+
 function buildMessage(): string {
   const days = daysRemaining();
-  if (days > 1) return `@here **FALTAN ${days} dias** para el GOTY of the year.`;
-  if (days === 1) return "@here **FALTA UN DIA para el GOTY of the year.**";
-  if (days === 0) return "@here **SALIO EL GOTY OF THE YEAR!!!**";
+  if (days > 1) return `@here **FALTAN ${days} dias** para el GOTY of the year.\n${SONG}`;
+  if (days === 1) return `@here **FALTA UN DIA para el GOTY of the year.**\n${SONG}`;
+  if (days === 0) return `@here **SALIO EL GOTY OF THE YEAR!!!**\n${SONG}`;
   return "";
 }
 
