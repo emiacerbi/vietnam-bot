@@ -19,10 +19,10 @@ function daysRemaining(): number {
 
 function buildMessage(): string {
   const days = daysRemaining();
-  if (days > 1) return `**${days} days** until August 13 drops. The wait continues.`;
-  if (days === 1) return "**Tomorrow.** August 13 releases tomorrow.";
-  if (days === 0) return "**Today is the day.** August 13 is out NOW.";
-  return `August 13 has been out for **${Math.abs(days)} days**.`;
+  if (days > 1) return `@here **FALTAN ${days} dias** para el GOTY of the year.`;
+  if (days === 1) return "@here **FALTA UN DIA para el GOTY of the year.**";
+  if (days === 0) return "@here **SALIO EL GOTY OF THE YEAR!!!**";
+  return "";
 }
 
 async function sendCountdown(): Promise<void> {
@@ -40,7 +40,7 @@ function scheduleDaily(): void {
   // Fire at 10:00 AM UTC every day
   const now = new Date();
   const next = new Date();
-  next.setUTCHours(10, 0, 0, 0);
+  next.setUTCHours(11, 0, 0, 0);
   if (now >= next) next.setUTCDate(next.getUTCDate() + 1);
 
   const msUntilFirst = next.getTime() - now.getTime();
@@ -53,7 +53,7 @@ function scheduleDaily(): void {
 }
 
 client.once("ready", () => {
-  console.log(`Logged in as ${client.user?.tag} — ${daysRemaining()} days remaining.`);
+  console.log(`Logged in as ${client.user?.tag} — ${daysRemaining()} dias restantes.`);
   scheduleDaily();
 });
 
