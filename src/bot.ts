@@ -37,10 +37,10 @@ async function sendCountdown(): Promise<void> {
 }
 
 function scheduleDaily(): void {
-  // Fire at 10:00 AM UTC every day
+  // Fire at 11:00 AM UTC-3 (14:00 UTC) every day
   const now = new Date();
   const next = new Date();
-  next.setUTCHours(11, 0, 0, 0);
+  next.setUTCHours(14, 0, 0, 0);
   if (now >= next) next.setUTCDate(next.getUTCDate() + 1);
 
   const msUntilFirst = next.getTime() - now.getTime();
