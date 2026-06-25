@@ -17,13 +17,26 @@ function daysRemaining(): number {
   return Math.ceil(diff / (1000 * 60 * 60 * 24));
 }
 
-const SONG = "https://www.youtube.com/watch?v=3RmQTYLD398";
+const SONGS = [
+  "https://www.youtube.com/watch?v=3RmQTYLD398",
+  "https://www.youtube.com/watch?v=uVBG11XyeBs",
+  "https://www.youtube.com/watch?v=TDfG2SiS1IA",
+  "https://www.youtube.com/watch?v=1RHo_ZG-YGo",
+  "https://www.youtube.com/watch?v=i43xxh09d40",
+  "https://www.youtube.com/watch?v=BIikfdNIHQE"
+];
+
+function dailySong(): string {
+  const dayIndex = Math.floor(Date.now() / (1000 * 60 * 60 * 24));
+  return SONGS[dayIndex % SONGS.length];
+}
 
 function buildMessage(): string {
   const days = daysRemaining();
-  if (days > 1) return `@here **FALTAN ${days} dias** para el GOTY of the year.\n${SONG}`;
-  if (days === 1) return `@here **FALTA UN DIA para el GOTY of the year.**\n${SONG}`;
-  if (days === 0) return `@here **SALIO EL GOTY OF THE YEAR!!!**\n${SONG}`;
+  const song = dailySong();
+  if (days > 1) return `@here **FALTAN ${days} dias** para el GOTY of the year.\n${song}`;
+  if (days === 1) return `@here **FALTA UN DIA para el GOTY of the year.**\n${song}`;
+  if (days === 0) return `@here **SALIO EL GOTY OF THE YEAR!!!**\n${song}`;
   return "";
 }
 
